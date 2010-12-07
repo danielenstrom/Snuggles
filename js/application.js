@@ -58,7 +58,7 @@ var Application = new function(){
 	
 	function socketMessage(m) {
 		debug("Message Recived");
-		debug(m);
+		debug(JSON.parse(m));
 	}
 	
 	function socketDisconnect(e) {
@@ -67,7 +67,6 @@ var Application = new function(){
 	
 	function socketConnect(e) {
 		debug("Connected To Socket Server");
-		socket.send("Hello Server!");
 	}
 	
 	function loadBitmaps()
@@ -249,7 +248,7 @@ var Application = new function(){
 		context.restore();
 		
 		if(socket) {
-			//socket.send(JSON.stringify(vehicle));
+			socket.send(JSON.stringify(vehicle));
 		}
 	}
 	
