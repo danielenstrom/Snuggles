@@ -58,7 +58,24 @@ var Application = new function(){
 	
 	function socketMessage(m) {
 		debug("Message Recived");
-		debug(JSON.parse(m));
+		var response = JSON.parse(m);
+		debug(response);
+		if(response.command == "iphone") {
+			switch(response.direction) {
+				case 'up':
+					isUpDown = isUpDown ? false : true;
+					if(!isUpDown) {
+						vehicle.thrust = 0;
+					}
+					break;
+				
+				case 'left':
+					break;
+					
+				case 'right':
+					break;
+			}
+		}
 	}
 	
 	function socketDisconnect(e) {

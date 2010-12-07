@@ -19,8 +19,12 @@ socket.on('connection', function(client){
   console.log("Client connected");
 
   client.on('message', function(e){
-	console.log("Message", e);
-	socket.broadcast(e);
+	var cmd = JSON.parse(e);
+
+	if(cmd && cmd.command == 'iphone') {
+		console.log("Message", e);
+		socket.broadcast(e);
+	}
   })
 
   client.on('disconnect', function(){
