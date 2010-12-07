@@ -1,0 +1,57 @@
+/*
+Title: Master styles for screen media
+Author: max@adoreyou.se
+*/
+
+html, body{
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 62.5%;
+	background: #fff;
+}
+
+
+#wrapper{
+	z-index: 1000;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#canvas{
+	z-index:0;
+	background: #000;
+}
+
+/*
+----------------------------------
+misc
+----------------------------------
+*/
+
+hr, hide {
+	display: none;
+}
+
+a img {
+	border: none;
+}
+
+/*
+----------------------------------
+self-clear floats
+----------------------------------
+*/
+
+.group:after {
+	content:".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+    font-size: 0;
+}

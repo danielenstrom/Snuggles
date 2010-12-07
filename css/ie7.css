@@ -1,0 +1,8 @@
+/*
+Title: IE7 Hacks
+Author: max@adoreyou.se
+*/
+
+*:first-child+html .group {
+	min-height: 1px;
+}
