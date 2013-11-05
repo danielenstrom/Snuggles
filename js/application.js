@@ -23,13 +23,14 @@ var Application = new function(){
 	* INIT
 	*/
 	
-	var stats;// = new Stats();
+	var socket;
 	
+	var stats;// = new Stats();
 	
 	this.initialize = function()
 	{
 		canvas = document.getElementById('canvas');
-	
+			
 		if(canvas && canvas.getContext)
 		{
 			context = canvas.getContext('2d');
@@ -47,6 +48,25 @@ var Application = new function(){
 			//$(document.documentElement).keyup(onKeyUpHandler);
 
 		}
+		
+		socket = new io.Socket('localhost', {port : 9090});
+		socket.on('connect', socketConnect);
+		socket.on('disconnect', socketDisconnect);
+		socket.on('message', socketMessage);
+		socket.connect();
+	}
+	
+	function socketMessage(m) {
+		debug("Message Recived");
+		debug(JSON.parse(m));
+	}
+	
+	function socketDisconnect(e) {
+		debug("Disconnected from server");
+	}
+	
+	function socketConnect(e) {
+		debug("Connected To Socket Server");
 	}
 	
 	function loadBitmaps()
@@ -226,6 +246,10 @@ var Application = new function(){
 		//end drawing
 		
 		context.restore();
+		
+		if(socket) {
+			socket.send(JSON.stringify(vehicle));
+		}
 	}
 	
 	function updateParticles()
